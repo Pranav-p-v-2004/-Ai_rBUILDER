@@ -5,6 +5,13 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { TextField } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+
 
 
 const steps = ['Basic Informations', 'Contact Details', 'Educational Details', 'Review & Submit'];
@@ -26,6 +33,21 @@ function ResumeInput() {
       case 0: return (
         <div>
           <h3>Personal Details</h3>
+          <div className='row p-2'>
+            <TextField id="standard-basic-fullname" label="Full name" variant="standard" />
+            <TextField id="standard-basic-loc" label="Location" variant="standard" />
+            <FormControl variant='standard'>
+              <InputLabel id="demo-simple-select-label">Choose Job Title</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Job"
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+
+              </Select>
+            </FormControl>
+          </div>
         </div>
       )
         break;
@@ -33,6 +55,12 @@ function ResumeInput() {
       case 1: return (
         <div>
           <h3>Contact Details</h3>
+         <div className='row p-2'>
+            <TextField id="standard-basic-email" label="Email" variant="standard" />
+            <TextField id="standard-basic-contact" label="Contact Number " variant="standard" />
+            <TextField id="standard-basic-linkedin" label="LinkedIn Link " variant="standard" />
+            <TextField id="standard-basic-github" label="Github Link " variant="standard" />
+         </div>
         </div>
       )
         break;
@@ -40,6 +68,11 @@ function ResumeInput() {
       case 2: return (
         <div>
           <h3>Educational Details</h3>
+          <div className='row p-2'>
+            <TextField id="standard-basic-degree" label="Bachelor's Degree" variant="standard" />
+            <TextField id="standard-basic-collage" label="University/Collage  " variant="standard" />
+            <TextField id="standard-basic-graduation" label="Year of Graduation  " variant="standard" />
+          </div>
         </div>
       )
         break;
