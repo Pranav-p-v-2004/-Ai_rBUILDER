@@ -13,10 +13,13 @@ import Select from '@mui/material/Select';
 import jobRole from '../assets/jobRole.json';
 import jobSkill from'../assets/jobSkills.json';
 import summaries from'../assets/summaries.json';
-
+import { toast } from 'react-toastify';
+import { saveResumeApi } from '../service/apiService';
+import { useNavigate } from "react-router-dom";
 
 
 function ResumeInput({resumeDetails,setResumeDetails}) {
+   const navigate = useNavigate();
 const steps = ['Basic Informations', 'Contact Details', 'Educational Details', 'Review & Submit'];
 
 
@@ -112,6 +115,26 @@ console.log(resumeDetails);
       handleNext()
     }
 
+   const handleSaveResume = async () =>{
+    //  make api call to save resume whenever the finish button clicks
+
+    const { fullname,location,job,phone,email,github,linkedin,degree,collage,year,skills,summary} = resumeDetails
+
+    if(fullname && location && job && phone && email && github && linkedin && degree && collage && year && skills.length>0 && summary){
+      // make api call
+     const response = await saveResumeApi (resumeDetails)
+     console.log(response);
+     if(response.status===201){
+      toast.success("Resume Added Successfull")
+      const resumeId = response.data.id;
+      navigate(`/resume/${resumeId}`);
+     }
+     
+    }else{
+     toast.warning("Please fill the form completely!!!")
+    }
+   }
+
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper activeStep={activeStep}>
@@ -132,7 +155,7 @@ console.log(resumeDetails);
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button>
+            <Button onClick={handleSaveResume}>
               FINISH
             </Button>
           </Box>

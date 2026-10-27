@@ -9,7 +9,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 function Footer() {
   return (
-    <div style={{backgroundColor :'black',height:"300px"}} className='container-fluid text-light p-5'>
+    <div style={{backgroundColor :'#D2B48C',height:"300px"}} className='container-fluid text-light p-5'>
         <div className="row">
             <div className="col-lg-4">
             <h4>Ai rBUILDER</h4>
@@ -33,7 +33,7 @@ function Footer() {
             
         </div>
 
-        <h4 className='text-center mt-2'>Designed & built with ❤️ using React</h4>
+        <h4 className='text-center mt-2'>  Designed with precision. Developed with React.</h4>
    
     </div>
   )

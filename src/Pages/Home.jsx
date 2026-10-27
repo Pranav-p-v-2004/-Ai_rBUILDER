@@ -75,41 +75,41 @@ function Home() {
                     <div className='col-lg-1'></div>
                     <div className='col-lg-5'>
                         <div className='row '>
-                            <div className="col-md-3 ">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://img.freepik.com/premium-photo/design-professional-profile-picture-with-sharp-focus-natural-lighting-clean-neutral-background_880763-20280.jpg?w=1060" alt="about" />
+                            <div className="col-md-3">
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://img.freepik.com/premium-photo/design-professional-profile-picture-with-sharp-focus-natural-lighting-clean-neutral-background_880763-20280.jpg?w=1060" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://assets.livecareer.co.uk/blobimages/lcintl-lp/luk/images/grid/grid7.png" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://assets.livecareer.co.uk/blobimages/lcintl-lp/luk/images/grid/grid7.png" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://assets.livecareer.co.uk/blobimages/lcintl-lp/luk/images/grid/grid2.png" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://assets.livecareer.co.uk/blobimages/lcintl-lp/luk/images/grid/grid2.png" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://img.freepik.com/premium-photo/happy-man-ai-generated-portrait-user-profile_1119669-1.jpg" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://img.freepik.com/premium-photo/happy-man-ai-generated-portrait-user-profile_1119669-1.jpg" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://tse3.mm.bing.net/th/id/OIP.2i5UaEHaQM3PYAYXQyM1AAAAAA?pid=Api&P=0&h=180" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://tse3.mm.bing.net/th/id/OIP.2i5UaEHaQM3PYAYXQyM1AAAAAA?pid=Api&P=0&h=180" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://img.freepik.com/premium-photo/girl-happy-portrait-user-profile-by-ai_1119669-10.jpg" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://img.freepik.com/premium-photo/girl-happy-portrait-user-profile-by-ai_1119669-10.jpg" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://writestylesonline.com/wp-content/uploads/2018/11/Three-Statistics-That-Will-Make-You-Rethink-Your-Professional-Profile-Picture-1024x1024.jpg" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://writestylesonline.com/wp-content/uploads/2018/11/Three-Statistics-That-Will-Make-You-Rethink-Your-Professional-Profile-Picture-1024x1024.jpg" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://i.pinimg.com/originals/07/33/ba/0733ba760b29378474dea0fdbcb97107.png" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://i.pinimg.com/originals/07/33/ba/0733ba760b29378474dea0fdbcb97107.png" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://tse3.mm.bing.net/th/id/OIP.wPWx97qT9JbAIeh4t6TDVQHaHa?pid=Api&P=0&h=180" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://tse3.mm.bing.net/th/id/OIP.wPWx97qT9JbAIeh4t6TDVQHaHa?pid=Api&P=0&h=180" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://img.magnific.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://img.magnific.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?semt=ais_hybrid&w=740&q=80" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://tse2.mm.bing.net/th/id/OIP.4oYqJqInuQd2TAlPPdggLgHaHa?pid=Api&P=0&h=180" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://tse2.mm.bing.net/th/id/OIP.4oYqJqInuQd2TAlPPdggLgHaHa?pid=Api&P=0&h=180" alt="about" />
                             </div>
                             <div className="col-md-3">
-                                <img style={{ height: "65%" }} className='img-fluid  my-5 rounded' src="https://assets.livecareer.co.uk/blobimages/lcintl-lp/luk/images/grid/grid1.png" alt="about" />
+                                <img style={{ height: "55%" }} className='img-fluid  my-5 rounded' src="https://assets.livecareer.co.uk/blobimages/lcintl-lp/luk/images/grid/grid1.png" alt="about" />
                             </div>
                         </div>
                     </div>
