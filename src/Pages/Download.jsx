@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Download() {
   return (
     <div className='container my-5'>
-      <div className='d-flex justify-content-between align-items center'>
+      <div className='d-flex justify-content-between align-items-center'>
         <h3 className='fs=1'>Download Resume History</h3>
         <Link to={'resume-details'} className='fs-5'>Back <FaArrowLeft /></Link>
       </div>

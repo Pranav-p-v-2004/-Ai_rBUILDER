@@ -20,7 +20,12 @@ export const getAllResumeApi = async () => {
 };
 
 
-//remove resume API : called by saved component when delete button clickrd
+//remove resume API : called by saved component when delete button clicked
 export const deleteAllResumeApi = async (resumeId) => {
   return await axiosService("DELETE", `/resumes/${resumeId}`, {});
+};
+
+//update resume API : called by edit component when update button clicked
+export const editAllResumeApi = async (resumeId,resumeDetails) => {
+  return await axiosService("PUT", `/resumes/${resumeId}`,resumeDetails);
 };

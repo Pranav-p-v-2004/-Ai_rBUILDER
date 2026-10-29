@@ -12,6 +12,8 @@ import Select from '@mui/material/Select';
 import { FaXmark } from "react-icons/fa6";
 import jobRole from '../assets/jobRole.json';
 import { toast } from 'react-toastify';
+import { editAllResumeApi } from '../service/apiService';
+
 
 
 const style = {
@@ -36,26 +38,55 @@ function Edit({ resumeDetails, setResumeDetails }) {
   const skillRef = React.useRef()
 
 
-const removeSkill = (skill) => {
-  setResumeDetails({
-    ...resumeDetails,
-    skills: resumeDetails.skills.filter(item => item !== skill)
-  })
-}
+  const removeSkill = (skill) => {
+    setResumeDetails({
+      ...resumeDetails,
+      skills: resumeDetails.skills.filter(item => item !== skill)
+    })
+  }
 
-const addSkill =(skill)=>{
-  if(skill){
-    if(resumeDetails?.skills?.map(item=>item.toLowerCase()).includes(skill.toLowerCase())){
-      toast.info("Given Skill is already avaliable , please add another skill")
-    }else{
-        setResumeDetails({...resumeDetails,skills:[...resumeDetails?.skills,skill]})
-    }
-    skillRef.current.value = ""
-   } else{
+  const addSkill = (skill) => {
+    if (skill) {
+      if (resumeDetails?.skills?.map(item => item.toLowerCase()).includes(skill.toLowerCase())) {
+        toast.info("Given Skill is already avaliable , please add another skill")
+      } else {
+        setResumeDetails({ ...resumeDetails, skills: [...resumeDetails?.skills, skill] })
+      }
+      skillRef.current.value = ""
+    } else {
       toast.warning("Please enter a valid input")
     }
+
+  }
+
+
+   const handleEditResume = async () =>{
+      //  make api call to update resume whenever the update button clicks
   
-}
+      const { fullname,location,job,phone,email,github,linkedin,degree,collage,year,skills,summary} = resumeDetails
+  
+      if(fullname && location && job && phone && email && github && linkedin && degree && collage && year && skills.length>0 && summary){
+        // make api call
+       const response = await editAllResumeApi (resumeDetails.id,resumeDetails)
+       console.log(response);
+       if(response.status===200){
+        toast.success("Resume Update Successfull")
+        setTimeout(() => {
+        handleClose()
+        }, 2500);
+      
+       }
+       
+      }else{
+       toast.warning("Please fill the form completely!!!")
+      }
+     }
+
+
+
+
+
+
 
 
 
@@ -73,82 +104,82 @@ const addSkill =(skill)=>{
             Edit Resume Deatalis
           </Typography>
           <Box id="modal-modal-description" sx={{ mt: 2 }}>
-           <div>
-          <h3>Personal Details</h3>
-          <div className='row p-2'>
-            <TextField value={resumeDetails?.fullname} onChange ={e=>setResumeDetails({...resumeDetails,fullname:e.target.value})} id="standard-basic-fullname" label="Full name" variant="standard" />
-            <TextField value={resumeDetails?.location} onChange ={e=>setResumeDetails({...resumeDetails,location:e.target.value})} id="standard-basic-loc" label="Location" variant="standard" />
-            <FormControl variant='standard'>
-              <InputLabel id="demo-simple-select-label">Choose Job Title</InputLabel>
-              <Select defaultValue={resumeDetails?.job} onChange ={e=>setResumeDetails({...resumeDetails,job:e.target.value})} 
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Job"
-              >
-               
-                  {
-                 jobRole.jobRoles.map((job) => (
-                  <MenuItem key={job} value={job}> {job}
-                  </MenuItem>
-                  ))
-                  }
-    
-          
-              </Select>
-            </FormControl>
-          </div>
-        </div>
+            <div>
+              <h3>Personal Details</h3>
+              <div className='row p-2'>
+                <TextField value={resumeDetails?.fullname} onChange={e => setResumeDetails({ ...resumeDetails, fullname: e.target.value })} id="standard-basic-fullname" label="Full name" variant="standard" />
+                <TextField value={resumeDetails?.location} onChange={e => setResumeDetails({ ...resumeDetails, location: e.target.value })} id="standard-basic-loc" label="Location" variant="standard" />
+                <FormControl variant='standard'>
+                  <InputLabel id="demo-simple-select-label">Choose Job Title</InputLabel>
+                  <Select defaultValue={resumeDetails?.job} onChange={e => setResumeDetails({ ...resumeDetails, job: e.target.value })}
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Job"
+                  >
+
+                    {
+                      jobRole.jobRoles.map((job) => (
+                        <MenuItem key={job} value={job}> {job}
+                        </MenuItem>
+                      ))
+                    }
+
+
+                  </Select>
+                </FormControl>
+              </div>
+            </div>
 
             {/* contact */}
-           <div>
-                    <h3>Contact Details</h3>
-                   <div className='row p-2'>
-                      <TextField value={resumeDetails?.email} onChange ={e=>setResumeDetails({...resumeDetails,email:e.target.value})} id="standard-basic-email" label="Email" variant="standard" />
-                      <TextField value={resumeDetails?.phone} onChange ={e=>setResumeDetails({...resumeDetails,phone:e.target.value})} id="standard-basic-contact" label="Contact Number " variant="standard" />
-                      <TextField value={resumeDetails?.linkedin} onChange ={e=>setResumeDetails({...resumeDetails,linkedin:e.target.value})} id="standard-basic-linkedin" label="LinkedIn Link " variant="standard" />
-                      <TextField value={resumeDetails?.github} onChange ={e=>setResumeDetails({...resumeDetails,github:e.target.value})} id="standard-basic-github" label="Github Link " variant="standard" />
-                   </div>
-                  </div>
+            <div>
+              <h3>Contact Details</h3>
+              <div className='row p-2'>
+                <TextField value={resumeDetails?.email} onChange={e => setResumeDetails({ ...resumeDetails, email: e.target.value })} id="standard-basic-email" label="Email" variant="standard" />
+                <TextField value={resumeDetails?.phone} onChange={e => setResumeDetails({ ...resumeDetails, phone: e.target.value })} id="standard-basic-contact" label="Contact Number " variant="standard" />
+                <TextField value={resumeDetails?.linkedin} onChange={e => setResumeDetails({ ...resumeDetails, linkedin: e.target.value })} id="standard-basic-linkedin" label="LinkedIn Link " variant="standard" />
+                <TextField value={resumeDetails?.github} onChange={e => setResumeDetails({ ...resumeDetails, github: e.target.value })} id="standard-basic-github" label="Github Link " variant="standard" />
+              </div>
+            </div>
             {/* Educational */}
-           <div>
-                    <h3>Educational Details</h3>
-                    <div className='row p-2'>
-                      <TextField value={resumeDetails?.degree} onChange ={e=>setResumeDetails({...resumeDetails,degree:e.target.value})} id="standard-basic-degree" label="Bachelor's Degree" variant="standard" />
-                      <TextField value={resumeDetails?.collage} onChange ={e=>setResumeDetails({...resumeDetails,collage:e.target.value})} id="standard-basic-collage" label="University/Collage  " variant="standard" />
-                      <TextField value={resumeDetails?.year} onChange ={e=>setResumeDetails({...resumeDetails,year:e.target.value})} id="standard-basic-graduation" label="Year of Graduation  " variant="standard" />
-                    </div>
-                  </div>
+            <div>
+              <h3>Educational Details</h3>
+              <div className='row p-2'>
+                <TextField value={resumeDetails?.degree} onChange={e => setResumeDetails({ ...resumeDetails, degree: e.target.value })} id="standard-basic-degree" label="Bachelor's Degree" variant="standard" />
+                <TextField value={resumeDetails?.collage} onChange={e => setResumeDetails({ ...resumeDetails, collage: e.target.value })} id="standard-basic-collage" label="University/Collage  " variant="standard" />
+                <TextField value={resumeDetails?.year} onChange={e => setResumeDetails({ ...resumeDetails, year: e.target.value })} id="standard-basic-graduation" label="Year of Graduation  " variant="standard" />
+              </div>
+            </div>
 
             {/* Skills */}
             <div className='my-2 p-3'>
               <h3>Skills</h3>
               <div className='d-flex '>
                 <input ref={skillRef} type="text" className='form-control' placeholder='Add Skill' />
-                <button onClick={()=>{addSkill(skillRef.current.value)}} className='btn'>Add</button>
+                <button onClick={() => { addSkill(skillRef.current.value) }} className='btn'>Add</button>
               </div>
               <h5 className='my-2'>Added Skills :</h5>
 
               <div className='d-flex justify-content-between flex-wrap p-3'>
-            {
-                resumeDetails?.skills?.map(skill=>(
-                  <Button onClick={()=>{removeSkill(skill)}} key={{skill}} variant='contained' className='my-2'> {skill}<FaXmark className='ms-3' /></Button>
-              ))
-            }
+                {
+                  resumeDetails?.skills?.map(skill => (
+                    <Button onClick={() => { removeSkill(skill) }} key={{ skill }} variant='contained' className='my-2'> {skill}<FaXmark className='ms-3' /></Button>
+                  ))
+                }
               </div>
             </div>
 
-             {/* Summary */}
+            {/* Summary */}
 
             <div className='mt-3'>
               <h3>Summary</h3>
               <div className='row p-3'>
-                <TextField value={resumeDetails?.summary} onChange={e => setResumeDetails({...resumeDetails, summary: e.target.value})} 
-                id='summary' label='summary' variant='standard' multiline></TextField>
+                <TextField value={resumeDetails?.summary} onChange={e => setResumeDetails({ ...resumeDetails, summary: e.target.value })}
+                  id='summary' label='summary' variant='standard' multiline></TextField>
               </div>
             </div>
 
             {/* Update button */}
-            <button className='btn btn-primary mt-3 mt-4'>Update Cv</button>
+            <button onClick={handleEditResume} className='btn btn-primary mt-3 mt-4'>Update Cv</button>
           </Box>
         </Box>
       </Modal>
