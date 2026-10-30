@@ -5,9 +5,10 @@ import { Link, useParams } from 'react-router-dom';
 import { IoDocumentText } from "react-icons/io5";
 import { IoMdRefresh } from "react-icons/io";
 import Preview from '../Components/Preview';
-import { viewResumeApi } from '../service/apiService';
+import { downloadResumeApi, viewResumeApi } from '../service/apiService';
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
+
 
 
 
@@ -36,16 +37,56 @@ function View() {
     }
   }
 
-
-const generatePDF = async () => {
+ const downloadCV = async () => {
   const previewTag =previewRef.current
   const canvas = await html2canvas(previewTag)
+  canvas.toBlob (async(imgFile)=>{
+    //create formdata to send file via API
+    const formData =new FormData()
+    formData.append("file",imgFile)
+    formData.append("upload_preset","Ai-builder")
+    const result = await fetch("https://api.cloudinary.com/v1_1/quzujhwy/image/upload",{
+
+    method :"POST",
+    body : formData
+     })
+     const serverData =await result.json()
+     const url = serverData.secure_url
+    //  console.log(url);
+    generatePDF(url)
+     
+
+  })
+ }
+
+
+
+
+const generatePDF = async (resumeImg) => {
 
   const pdf = new jsPDF()
+  // canvas.toBlob((blob)=>{
+  //   const url = URL.createObjectURL(blob);
+  //   console.log(url);
+    
+  // })
   const imageHeight = pdf.internal.pageSize.getHeight()
   const imageWidth = pdf.internal.pageSize.getWidth()
-  pdf.addImage (canvas,"PNG",0,0,imageWidth,imageHeight)
-  pdf.save("resume.pdf")
+  pdf.addImage (resumeImg,"PNG",0,0,imageWidth,imageHeight)
+  //
+
+  const today = new Date()
+  const timestamp = `${today.toLocaleDateString()},${today.toLocaleTimeString()}`
+  // console.log(today);
+  console.log(timestamp);
+  const result = await downloadResumeApi({timestamp,resumeImg,resumeId:resume.id,jobRole:resume.job})
+
+  if(result.status === 201){
+    //download//
+    pdf.save(`${resume.fullname} CV.pdf`)
+  }
+  
+  
 }
 
   return (
@@ -57,7 +98,7 @@ const generatePDF = async () => {
           <div className='d-flex justify-content-center align-items-center'>
 
             {/*Download*/}
-            <button onClick={generatePDF} style={{ color: 'red' }} className='btn'><FaFileDownload />Download CV</button>
+            <button onClick={downloadCV} style={{ color: 'red' }} className='btn'><FaFileDownload />Download CV</button>
 
             {/*Edit*/}
             <Edit  resumeDetails ={resume} setResumeDetails ={SetResume}/>
